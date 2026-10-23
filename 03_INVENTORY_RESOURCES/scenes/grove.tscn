@@ -1,0 +1,82 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://script/level.gd" id="1_iun7i"]
+[ext_resource type="TileSet" path="res://assets/tileset.tres" id="2_nb54m"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_t2131"]
+[ext_resource type="Script" path="res://script/player.gd" id="4_yvti1"]
+[ext_resource type="PackedScene" path="res://scenes/inventory.tscn" id="5_tpwta"]
+[ext_resource type="Script" path="res://script/exit_zone.gd" id="7_c68oh"]
+[ext_resource type="FontFile" path="res://assets/ComicoroRu_0.ttf" id="8_ppx35"]
+[ext_resource type="PackedScene" path="res://scenes/tree.tscn" id="9_tree"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1pqf"]
+size = Vector2(16, 32)
+
+[node name="Grove" type="Node2D" unique_id=622146306]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_iun7i")
+map_size = Vector2i(16, 12)
+
+[node name="GroundColor" type="ColorRect" parent="." unique_id=1473446873]
+z_index = -2
+offset_right = 256.0
+offset_bottom = 192.0
+mouse_filter = 2
+color = Color(0.16470589, 0.2509804, 0.19607843, 1)
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=1693226682]
+z_index = -1
+tile_map_data = PackedByteArray("AAABAAEAAAAAAAAAAAADAAEAAAABAAIAAAALAAEAAAABAAIAAAAJAAMAAAAAAAAAAAABAAQAAAABAAIAAAALAAQAAAABAAIAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAAIAAYAAAAAAAAAAAAHAAcAAAABAAIAAAABAAgAAAAAAAAAAAAOAAgAAAABAAIAAAACAAkAAAABAAIAAAADAAoAAAAAAAAAAAA=")
+tile_set = ExtResource("2_nb54m")
+
+[node name="Plants" type="TileMapLayer" parent="." unique_id=157516506]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAADAAIAAAAEAAEAAAAIAAIAAQAAAAAAAQAMAAIAAQAAAAAAAgAGAAMAAQAAAAAAAgAEAAYAAQAAAAAAAgALAAYAAAAEAAEAAAAMAAcAAQAAAAAAAgAFAAkAAQAAAAAAAgAIAAoAAAAEAAEAAAA=")
+tile_set = ExtResource("2_nb54m")
+
+[node name="Walls" type="TileMapLayer" parent="." unique_id=814276687]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAAAAAAAAAEAAAAAAABAAAAAAAEAAAAAAACAAAAAAAEAAAAAAADAAAAAAAEAAAAAAAEAAAAAAAEAAAAAAAFAAAAAAAEAAAAAAAGAAAAAAAEAAAAAAAHAAAAAAAEAAAAAAAIAAAAAAAEAAAAAAAJAAAAAAAEAAAAAAAKAAAAAAAEAAAAAAALAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAANAAAAAAAEAAAAAAAOAAAAAAAEAAAAAAAPAAAAAAAEAAAAAAAAAAEAAAAEAAAAAAAGAAEAAAABAAAAAAANAAEAAAACAAAAAAAPAAEAAAAEAAAAAAAAAAIAAAAEAAAAAAAPAAIAAAAEAAAAAAAAAAMAAAAEAAAAAAACAAMAAAABAAAAAAAPAAMAAAAEAAAAAAAAAAQAAAAEAAAAAAAGAAQAAAACAAAAAAANAAQAAAABAAAAAAAPAAQAAAAEAAAAAAAAAAUAAAAEAAAAAAAPAAUAAAAEAAAAAAAAAAYAAAAEAAAAAAAPAAYAAAAEAAAAAAAAAAcAAAAEAAAAAAACAAcAAAACAAAAAAAPAAcAAAAEAAAAAAAAAAgAAAAEAAAAAAAFAAgAAAABAAAAAAAKAAgAAAADAAAAAAAPAAgAAAAEAAAAAAAAAAkAAAAEAAAAAAAKAAkAAAACAAAAAAAPAAkAAAAEAAAAAAAAAAoAAAAEAAAAAAANAAoAAAABAAAAAAAPAAoAAAAEAAAAAAAAAAsAAAAEAAAAAAABAAsAAAAEAAAAAAACAAsAAAAEAAAAAAADAAsAAAAEAAAAAAAEAAsAAAAEAAAAAAAFAAsAAAAEAAAAAAAGAAsAAAAEAAAAAAAHAAsAAAAEAAAAAAAIAAsAAAAEAAAAAAAJAAsAAAAEAAAAAAAKAAsAAAAEAAAAAAALAAsAAAAEAAAAAAAMAAsAAAAEAAAAAAANAAsAAAAEAAAAAAAOAAsAAAAEAAAAAAAPAAsAAAAEAAAAAAA=")
+tile_set = ExtResource("2_nb54m")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=69484662]
+color = Color(0.14117648, 0.21176471, 0.37254903, 1)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1974057974 node_paths=PackedStringArray("anim") instance=ExtResource("3_t2131")]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(56, 88)
+motion_mode = 1
+script = ExtResource("4_yvti1")
+anim = NodePath("AnimatedSprite2D")
+
+[node name="Inventory" parent="." instance=ExtResource("5_tpwta")]
+
+[node name="TreeA" parent="." instance=ExtResource("9_tree")]
+position = Vector2(136, 72)
+
+[node name="TreeB" parent="." instance=ExtResource("9_tree")]
+position = Vector2(152, 120)
+
+[node name="ExitZone" type="Area2D" parent="." unique_id=1080626988]
+collision_layer = 0
+script = ExtResource("7_c68oh")
+next_scene_path = "res://scenes/forest.tscn"
+spawn_point = Vector2(280, 104)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitZone" unique_id=746367940]
+position = Vector2(24, 96)
+shape = SubResource("RectangleShape2D_v1pqf")
+
+[node name="Hint" type="Label" parent="ExitZone" unique_id=873442422]
+z_index = 4
+offset_left = 8.0
+offset_top = 66.0
+offset_right = 56.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0.9529412, 0.8862745, 0.63529414, 1)
+theme_override_fonts/font = ExtResource("8_ppx35")
+theme_override_font_sizes/font_size = 8
+text = "назад"
+horizontal_alignment = 1

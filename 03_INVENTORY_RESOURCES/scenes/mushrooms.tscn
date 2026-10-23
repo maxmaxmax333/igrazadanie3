@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://script/mushrooms.gd" id="1_gjkia"]
+[ext_resource type="Texture2D" path="res://assets/sprite.png" id="2_g5jiy"]
+[ext_resource type="Resource" path="res://resources/mushroom.tres" id="3_item"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y81ac"]
+atlas = ExtResource("2_g5jiy")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qesjn"]
+radius = 7.0
+
+[node name="Mushrooms" type="Node2D" unique_id=1659605896]
+texture_filter = 1
+script = ExtResource("1_gjkia")
+item_resources = ExtResource("3_item")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=352605778]
+texture = SubResource("AtlasTexture_y81ac")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1759163991]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=424291488]
+shape = SubResource("CircleShape2D_qesjn")

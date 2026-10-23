@@ -1,0 +1,90 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://script/level.gd" id="1_qm7rg"]
+[ext_resource type="TileSet" path="res://assets/tileset.tres" id="2_0nboi"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_3knxq"]
+[ext_resource type="Script" path="res://script/player.gd" id="4_ercsu"]
+[ext_resource type="PackedScene" path="res://scenes/inventory.tscn" id="5_j3csf"]
+[ext_resource type="Script" path="res://script/exit_zone.gd" id="7_cf55d"]
+[ext_resource type="FontFile" path="res://assets/ComicoroRu_0.ttf" id="8_di0nb"]
+[ext_resource type="PackedScene" path="res://scenes/item.tscn" id="9_axe"]
+[ext_resource type="Resource" path="res://resources/axe.tres" id="10_axeitem"]
+[ext_resource type="PackedScene" path="res://scenes/tree.tscn" id="11_tree"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyn53"]
+size = Vector2(48, 32)
+
+[node name="Forest" type="Node2D" unique_id=506301856]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_qm7rg")
+
+[node name="GroundColor" type="ColorRect" parent="." unique_id=1734373339]
+z_index = -2
+offset_right = 352.0
+offset_bottom = 224.0
+mouse_filter = 2
+color = Color(0.16470589, 0.2509804, 0.19607843, 1)
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=2035558787]
+z_index = -1
+tile_map_data = PackedByteArray("AAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAAEAAEAAAABAAIAAAALAAEAAAAAAAAAAAASAAEAAAABAAIAAAAIAAIAAAAAAAIAAAAKAAIAAAAAAAIAAAADAAMAAAAAAAAAAAAIAAMAAAAAAAIAAAAKAAMAAAAAAAIAAAANAAMAAAABAAIAAAAJAAQAAAAAAAIAAAALAAQAAAAAAAIAAAANAAQAAAAAAAAAAAABAAUAAAAAAAAAAAADAAUAAAABAAIAAAAIAAUAAAAAAAIAAAAKAAUAAAAAAAIAAAAOAAUAAAABAAIAAAAGAAYAAAAAAAAAAAAIAAYAAAAAAAIAAAAKAAYAAAAAAAIAAAANAAYAAAAAAAAAAAATAAYAAAAAAAAAAAAUAAYAAAAAAAAAAAAEAAcAAAABAAIAAAAIAAcAAAAAAAIAAAAKAAcAAAAAAAIAAAASAAcAAAAAAAAAAAATAAcAAAAAAAAAAAAUAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAIAAAAKAAgAAAAAAAIAAAACAAkAAAAAAAIAAAAIAAkAAAAAAAIAAAAKAAkAAAAAAAIAAAARAAkAAAAAAAAAAAABAAoAAAAAAAAAAAAIAAoAAAABAAIAAAALAAoAAAAAAAIAAAANAAoAAAAAAAIAAAABAAsAAAABAAIAAAALAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAFAAwAAAAAAAAAAAAIAAwAAAABAAIAAAAPAAwAAAAAAAAAAAA=")
+tile_set = ExtResource("2_0nboi")
+
+[node name="Plants" type="TileMapLayer" parent="." unique_id=810829508]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAGAAMAAQAAAAAAAgAQAAMAAAAEAAEAAAAHAAQAAQAAAAAAAQAQAAQAAQAAAAAAAgAFAAUAAQAAAAAAAgANAAcAAQAAAAAAAgABAAgAAQAAAAAAAgANAAgAAAAEAAEAAAANAAkAAQAAAAAAAgADAAsAAQAAAAAAAgACAAwAAAAEAAEAAAAKAAwAAQAAAAAAAgA=")
+tile_set = ExtResource("2_0nboi")
+
+[node name="Walls" type="TileMapLayer" parent="." unique_id=1422633620]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAAAAAAAAAEAAAAAAABAAAAAAAEAAAAAAACAAAAAAAEAAAAAAADAAAAAAAEAAAAAAAEAAAAAAAEAAAAAAAFAAAAAAAEAAAAAAAGAAAAAAAEAAAAAAAHAAAAAAAEAAAAAAAIAAAAAAAEAAAAAAAJAAAAAAAEAAAAAAAKAAAAAAAEAAAAAAALAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAANAAAAAAAEAAAAAAAOAAAAAAAEAAAAAAAPAAAAAAAEAAAAAAAQAAAAAAAEAAAAAAARAAAAAAAEAAAAAAASAAAAAAAEAAAAAAATAAAAAAAEAAAAAAAUAAAAAAAEAAAAAAAVAAAAAAAEAAAAAAAAAAEAAAAEAAAAAAAHAAEAAAABAAAAAAAOAAEAAAACAAAAAAAVAAEAAAAEAAAAAAAAAAIAAAAEAAAAAAACAAIAAAABAAEAAAANAAIAAAADAAAAAAARAAIAAAABAAAAAAAVAAIAAAAEAAAAAAAAAAMAAAAEAAAAAAAVAAMAAAAEAAAAAAAAAAQAAAAEAAAAAAACAAQAAAACAAAAAAAVAAQAAAAEAAAAAAAAAAUAAAAEAAAAAAAMAAUAAAABAAAAAAARAAUAAAACAAAAAAAVAAUAAAAEAAAAAAAAAAYAAAAEAAAAAAACAAYAAAABAAAAAAAPAAYAAAADAAEAAAAVAAYAAAAEAAAAAAAAAAcAAAAEAAAAAAAGAAcAAAACAAAAAAAVAAcAAAAEAAAAAAAAAAgAAAAEAAAAAAAPAAgAAAABAAAAAAARAAgAAAACAAAAAAAVAAgAAAAEAAAAAAAAAAkAAAAEAAAAAAAEAAkAAAADAAAAAAAVAAkAAAAEAAAAAAAAAAoAAAAEAAAAAAAFAAoAAAABAAAAAAAVAAoAAAAEAAAAAAAAAAsAAAAEAAAAAAAHAAsAAAACAAAAAAARAAsAAAABAAAAAAAVAAsAAAAEAAAAAAAAAAwAAAAEAAAAAAAVAAwAAAAEAAAAAAAAAA0AAAAEAAAAAAABAA0AAAAEAAAAAAACAA0AAAAEAAAAAAADAA0AAAAEAAAAAAAEAA0AAAAEAAAAAAAFAA0AAAAEAAAAAAAGAA0AAAAEAAAAAAAHAA0AAAAEAAAAAAAIAA0AAAAEAAAAAAAJAA0AAAAEAAAAAAAKAA0AAAAEAAAAAAALAA0AAAAEAAAAAAAMAA0AAAAEAAAAAAANAA0AAAAEAAAAAAAOAA0AAAAEAAAAAAAPAA0AAAAEAAAAAAAQAA0AAAAEAAAAAAARAA0AAAAEAAAAAAASAA0AAAAEAAAAAAATAA0AAAAEAAAAAAAUAA0AAAAEAAAAAAAVAA0AAAAEAAAAAAA=")
+tile_set = ExtResource("2_0nboi")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1050504674]
+color = Color(0.14117648, 0.21176471, 0.37254903, 1)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1974057974 node_paths=PackedStringArray("anim") instance=ExtResource("3_3knxq")]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(72, 72)
+motion_mode = 1
+script = ExtResource("4_ercsu")
+anim = NodePath("AnimatedSprite2D")
+
+[node name="Inventory" parent="." instance=ExtResource("5_j3csf")]
+
+[node name="Axe" parent="." instance=ExtResource("9_axe")]
+position = Vector2(136, 104)
+item_resources = ExtResource("10_axeitem")
+
+[node name="TreeA" parent="." instance=ExtResource("11_tree")]
+position = Vector2(152, 120)
+
+[node name="TreeB" parent="." instance=ExtResource("11_tree")]
+position = Vector2(232, 136)
+
+[node name="TreeC" parent="." instance=ExtResource("11_tree")]
+position = Vector2(104, 152)
+
+[node name="ExitZone" type="Area2D" parent="." unique_id=1148934844]
+collision_layer = 0
+script = ExtResource("7_cf55d")
+next_scene_path = "res://scenes/grove.tscn"
+spawn_point = Vector2(56, 88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitZone" unique_id=1938131435]
+position = Vector2(312, 112)
+shape = SubResource("RectangleShape2D_pyn53")
+
+[node name="Hint" type="Label" parent="ExitZone" unique_id=2037591793]
+z_index = 4
+offset_left = 280.0
+offset_top = 82.0
+offset_right = 338.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0.9529412, 0.8862745, 0.63529414, 1)
+theme_override_fonts/font = ExtResource("8_di0nb")
+theme_override_font_sizes/font_size = 8
+text = "в рощу"
+horizontal_alignment = 1

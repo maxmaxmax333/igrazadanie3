@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://script/tree.gd" id="1_tree"]
+[ext_resource type="Texture2D" path="res://assets/sprite.png" id="2_tex"]
+[ext_resource type="Resource" path="res://resources/wood.tres" id="3_wood"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tree"]
+radius = 10.0
+
+[node name="Tree" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_tree")
+item_resources = ExtResource("3_wood")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_tex")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_tree")
